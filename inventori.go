@@ -20,12 +20,17 @@ type array_mentah [idx_max]barang_mentah
 type array_jadi [idx_max]barang_jadi
 
 func main() {
-	var input_user byte
+	var input_user int
 	array_mentah[1].nama = "bawang"
 	array_jadi[1].nama = "nasi goreng"
 	fmt.Scan(&input_user)
 	for input_user != 0000 {
-		fmt.Println("1. Tampilkan Barang")
+		menu()
+	}
+}
+
+func menu(){
+	fmt.Println("1. Tampilkan Barang")
 		fmt.Println("2. Cari Barang")
 		fmt.Println("3. Edit Barang")
 		fmt.Println("4. Hapus Barang")
@@ -38,47 +43,40 @@ func main() {
 		} else if input_user == 4 {
 			hapus_barang()
 		}
-	}
 }
 
-func tampil_barang() {
+func tampil_barang(tab *array_mentah) {
 	var i int
 	for i <= idx_max {
-		fmt.Println(i, ". ", array_mentah[i])
-		if input_user == 9 {
-			for i {
-				
-			}
-		}
+		fmt.Println(i, ". ", *tab[i])
 	}
 }
 
-func sorting_mentah() {
-	var N int
-	for i := 0; i < len(array_mentah); i++ {
+func sorting_mentah(tab *array_mentah) {
+	for i := 0; i < len(*tab); i++ {
 		min_index := 1
-		for j := i + 1; j<len(array_mentah); j++{
-			if array_mentah[min_index] > array_mentah[j]{
+		for j := i + 1; j<len(*tab); j++{
+			if (*tab)[min_index] > (*tab)array_mentah[j]{
 				min_index = j
 			}
 		}
-		tmp := array_mentah[i]
-		array_mentah[i] = array_mentah[min_index]
-		array_mentah[min_index] = tmp
+		tmp := (*tab)[i]
+		(*tab)[i] = (*tab)[min_index]
+		(*tab)[min_index] = tmp
 	}
 }
 
-func sorting_jadi(){
+func sorting_jadi(tab *array_mentah){
 	var min_index int
-	for i := 0; i < len(array_jadi){
+	for i := 0; i < len(*tab){
 		min_index = 1
-		for j := i + 1; j < len(array_jadi); j++{
-			if array_mentah[min_index] > array_mentah[j]{
+		for j := i + 1; j < len(*tab); j++{
+			if (*tab)[min_index] > array_mentah[j]{
 				min_index = j
 			}
 		}
-		tmp := array_jadi[j]
-		array_jadi = array_jadi[min_index]
-		array_jadi[min_index] = tmp
+		tmp := (*tab)[j]
+		*tab = *tab[min_index]
+		(*tab)[min_index] = tmp
 	}
 }
