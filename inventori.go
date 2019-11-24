@@ -47,15 +47,38 @@ func tampil_barang() {
 		fmt.Println(i, ". ", array_mentah[i])
 		if input_user == 9 {
 			for i {
-
+				
 			}
 		}
 	}
 }
 
-func sorting() {
-	var N int = len(array_jadi)
-	for i = 0; i < N; i++ {
+func sorting_mentah() {
+	var N int
+	for i := 0; i < len(array_mentah); i++ {
+		min_index := 1
+		for j := i + 1; j<len(array_mentah); j++{
+			if array_mentah[min_index] > array_mentah[j]{
+				min_index = j
+			}
+		}
+		tmp := array_mentah[i]
+		array_mentah[i] = array_mentah[min_index]
+		array_mentah[min_index] = tmp
+	}
+}
 
+func sorting_jadi(){
+	var min_index int
+	for i := 0; i < len(array_jadi){
+		min_index = 1
+		for j := i + 1; j < len(array_jadi); j++{
+			if array_mentah[min_index] > array_mentah[j]{
+				min_index = j
+			}
+		}
+		tmp := array_jadi[j]
+		array_jadi = array_jadi[min_index]
+		array_jadi[min_index] = tmp
 	}
 }
